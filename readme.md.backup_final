@@ -376,7 +376,6 @@
 ![](media/image2.png)
 
 ```
-```mermaid
 flowchart LR
 PDF --1--> OCR
 WEB --1--> webparser
@@ -395,7 +394,6 @@ json -- 5 встраивает данные--> БД
 
 **Прогнозная модель**
 
-```mermaid
 flowchart TD
     A[Сырые ряды и региональные данные] --"Методы: Интерполяция (линейная, полиномиальная),<br/>Kalman filter, KNN-imputation, Байесовские модели<br/>Инструменты: scikit-learn, statsmodels, PyMC"--> B[Обработка пропущенных значений]
     
@@ -412,7 +410,7 @@ flowchart TD
     G --"Методы: Модельное развертывание, мониторинг<br/>Инструменты: MLflow, Docker, Kubernetes"--> H[Продакшн/Деплой]
     
     H --> I[Реальный прогноз]
-```
+
 
 Для прогнозной модели используются 3 метода повышения прогноза:
 - Сопоставление данных из разных источников в одну серию данных (анализ неструктурированных данных из прошлого раздела функциональных требований)
@@ -436,7 +434,6 @@ flowchart TD
 
 ![](media/image6.png)
 
-```mermaid
 graph TD
     %% Начало процесса
     USER_QUERY[Запрос пользователя]
@@ -481,7 +478,6 @@ graph TD
     MISSING_NODES --> ANSWER_GENERATION
 
     INDEX_RETRIEVAL --> ANSWER_GENERATION
-```
 
 Метод поиска релевантных данных в БД использует:
 - RAG для сопоставления эмбендингов запроса пользователя и формулировок количественных показателей
@@ -557,7 +553,6 @@ https://github.com/KochemirovSergey/stat_forms
 
 https://github.com/KochemirovSergey/agent_analitics
 
-```mermaid
 graph TB
     %% Система координации
     subgraph "Система координации"
@@ -632,7 +627,6 @@ graph TB
     class DATA,ETL data
     class TAVILY search
     class NEO4J,GEO storage
-```
 
 **[РИД]**
 
@@ -642,7 +636,6 @@ graph TB
 
 ![](media/image12.png)
 
-```mermaid
 graph TD
     %% Коммерческие компоненты
     STARTEX["ООО 'СТАРТЕХ БАЗА'"]
@@ -701,21 +694,6 @@ graph TD
     
     class LEGEND_RID_CURRENT ridCurrent
     class LEGEND_RID_PLANNED ridPlanned
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
 ## 3. Перспективы коммерциализации
 

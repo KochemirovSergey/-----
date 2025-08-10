@@ -391,6 +391,7 @@ json -- 5 встраивает данные--> БД
 БД -- 3 Данные онтологий для определения связей --> LLM
 ```
 
+
 От типа документа зависит пайплайн обработки. Все текстовые документы (кроме таблиц) сначала приводятся к машиночитаемому виду. Далее с помощью алгоритмических методов NLP проводится обработка полных текстов для определения отрывков документа содержащих количественные данные. Далее данные передаются в LLM. LLM запрашивает из БД онтологии соответствующие контексту количественных данных и определяет правильную конфигурации встраивания данных в БД. LLM в ответ возвращает json, который обрабатывается алгоритмическим скриптом для добавления данных в графовую базу данных.
 
 **Прогнозная модель**
@@ -398,7 +399,9 @@ json -- 5 встраивает данные--> БД
 ```mermaid
 flowchart TD
     A[Сырые ряды и региональные данные] --"Методы: Интерполяция (линейная, полиномиальная),<br/>Kalman filter, KNN-imputation, Байесовские модели<br/>Инструменты: scikit-learn, statsmodels, PyMC"--> B[Обработка пропущенных значений]
-    
+
+```
+
     B --"Методы: Bottom-up/Top-down reconciliation,<br/>Padding, Truncation<br/>Инструменты: HierarchicalForecast, Custom padding functions"--> C[Агрегация и нормализация рядов]
     
     C --"Методы: Лаги, средние, сезонность, внешние регрессоры<br/>Инструменты: tsfresh, sktime, FRED API"--> D[Инженерия признаков]
@@ -412,7 +415,7 @@ flowchart TD
     G --"Методы: Модельное развертывание, мониторинг<br/>Инструменты: MLflow, Docker, Kubernetes"--> H[Продакшн/Деплой]
     
     H --> I[Реальный прогноз]
-```
+
 
 Для прогнозной модели используются 3 метода повышения прогноза:
 - Сопоставление данных из разных источников в одну серию данных (анализ неструктурированных данных из прошлого раздела функциональных требований)
@@ -468,6 +471,8 @@ graph TD
     USER_QUERY --> EMBEDDING
     USER_QUERY --> ONTOLOGY_QUERY
 
+```
+
     EMBEDDING --> RAG
     ONTOLOGY_QUERY --> RELEVANT_NODES
 
@@ -481,7 +486,6 @@ graph TD
     MISSING_NODES --> ANSWER_GENERATION
 
     INDEX_RETRIEVAL --> ANSWER_GENERATION
-```
 
 Метод поиска релевантных данных в БД использует:
 - RAG для сопоставления эмбендингов запроса пользователя и формулировок количественных показателей
@@ -606,7 +610,7 @@ graph TB
     TGBOT --> LLM
     LLM --> TAVILY
     LLM --> NEO4J
-    
+
     %% Связи визуализации
     WEBAPP --> VIZ
     VIZ --> NEO4J
@@ -632,6 +636,7 @@ graph TB
     class DATA,ETL data
     class TAVILY search
     class NEO4J,GEO storage
+
 ```
 
 **[РИД]**
@@ -698,24 +703,11 @@ graph TD
     class STARTUP_DB,RID_CURRENT ridCurrent
     class EDU_DB,PARSER_AGENT,ANALYTICS_AGENT,FORECAST_MODEL,RID_NEW1,RID_NEW2 ridPlanned
     class STARTEX,OPENSOURCE neutral
-    
+
     class LEGEND_RID_CURRENT ridCurrent
     class LEGEND_RID_PLANNED ridPlanned
+
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
 ## 3. Перспективы коммерциализации
 
