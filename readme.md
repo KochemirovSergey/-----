@@ -373,9 +373,6 @@
 
 1. **Анализ неструктурированных данных**
 
-![](media/image2.png)
-
-```
 ```mermaid
 flowchart LR
 PDF --1--> OCR
